@@ -13,11 +13,35 @@ This project automates and streamlines the creation of social media content for 
 
 ```
 social-media-beautiful-home-decor/
-├── CLAUDE.md              # This file — project guide for AI assistants
-└── (project files will be added as the workflow develops)
+├── CLAUDE.md                    # This file — project guide for AI assistants
+├── pipeline.py                  # Full pipeline script (scrape → content → video → post)
+├── requirements.txt             # Python dependencies
+├── .env.example                 # API keys template (copy to .env and fill in)
+├── .gitignore
+└── content/                     # Generated content organized by product
+    └── <product-slug>/
+        ├── product_info.json    # Scraped product details
+        ├── instagram_content.json  # Captions, hashtags, CTA, video prompt
+        └── seedance_prompt.txt  # Standalone video generation prompt
 ```
 
-> This repository is in its initial setup phase. Files and structure will evolve as workflows are built out.
+## Quick Start
+
+```bash
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Copy .env.example to .env and fill in your API keys
+cp .env.example .env
+
+# 3. Run the full pipeline for a product
+python pipeline.py full "https://www.biancahome.com/products/..."
+
+# Or run individual steps:
+python pipeline.py scrape "https://www.biancahome.com/products/..."
+python pipeline.py generate-video content/<product-slug>
+python pipeline.py post-instagram content/<product-slug>
+```
 
 ## Workflow Details
 
@@ -74,11 +98,25 @@ For each selected product, create:
 | Tool | Purpose | URL |
 |------|---------|-----|
 | Bianca Home | Product source | https://www.biancahome.com |
-| SeekDance | AI video generation | https://seekdance.com |
-| Instagram | Publishing platform | https://www.instagram.com |
+| Seedance | AI video generation (by ByteDance) | https://seedance.io |
+| Instagram Graph API | Publishing platform | https://developers.facebook.com/docs/instagram-api/ |
+
+## API Setup
+
+### Seedance (Video Generation)
+- Sign up at https://seedance.io or https://kie.ai
+- Get an API key for text-to-video generation
+- Supports 480p/720p/1080p, multiple aspect ratios, 5-15 second videos
+
+### Instagram Graph API
+- Requires a Meta Developer App and Instagram Business Account
+- Need `instagram_content_publish` permission
+- Uses two-step container model: create container → wait for processing → publish
+- Video must be publicly accessible URL for the Reels upload
 
 ## Development Notes
 
 - This repository tracks content plans, generated assets, and workflow automation
 - Content batches can be organized by date or campaign
 - Keep product selections and generated content versioned for iteration
+- Video files (.mp4) are gitignored — only prompts and metadata are versioned
