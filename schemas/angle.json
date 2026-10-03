@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Angle",
+  "type": "object",
+  "required": [
+    "angle_id",
+    "type",
+    "title",
+    "hook",
+    "core_message",
+    "beats",
+    "cta",
+    "target_viewer",
+    "tone",
+    "presenter_role"
+  ],
+  "properties": {
+    "angle_id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "informative",
+        "fun",
+        "aspirational",
+        "wildcard"
+      ]
+    },
+    "wildcard_rationale": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "hook": {
+      "type": "string"
+    },
+    "core_message": {
+      "type": "string"
+    },
+    "beats": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 6,
+      "items": {
+        "type": "string"
+      }
+    },
+    "cta": {
+      "type": "string"
+    },
+    "target_viewer": {
+      "type": "string"
+    },
+    "tone": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requires_licensor_review": {
+      "type": "boolean",
+      "default": false
+    },
+    "presenter_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "null in Track A (brand videos); a presenter id from docs/characters/presenters.yaml in Track B"
+    },
+    "presenter_role": {
+      "type": "string",
+      "enum": [
+        "none",
+        "on_camera",
+        "voice_only"
+      ]
+    },
+    "caption": {
+      "type": "string",
+      "description": "Instagram caption draft incl. CTA"
+    },
+    "hashtags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 10
+    }
+  }
+}

@@ -1,0 +1,16 @@
+.env
+assets/**/*.mp4
+assets/**/*.mov
+assets/**/*.png
+assets/**/*.jpg
+assets/**/*.jpeg
+assets/**/*.webp
+assets/music/*
+!assets/**/.gitkeep
+!assets/brand/**
+renders/
+node_modules
+.venv
+__pycache__
+.pytest_cache
+.ruff_cache

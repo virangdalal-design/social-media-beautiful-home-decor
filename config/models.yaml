@@ -1,0 +1,92 @@
+# Model router. Edit this file, never hardcode models in Python.
+#
+# Policy: quality first. `final` is the only tier allowed in a posted video.
+# Endpoint ids are fal.ai ids as of Oct 2026 — confirm each in the fal model gallery
+# before the first paid run (docs/00-SETUP.md §B1) and fix here if renamed.
+# Costs are list prices for planning only; the real cost is logged per call.
+# Set endpoints_verified: true only after every id below was checked on fal.
+# `doctor` warns while it is false.
+#
+# Ranking source for the initial order (re-decide from our own benchmark, docs/06):
+#   - Seedance 2.5: omni-reference up to 50 refs, 30 s single pass, strongest
+#     image-to-video in public arenas → best for product fidelity from references.
+#   - Kling O3 / 3.0 Pro: top visual fidelity in text/image-to-video arenas, native 4K.
+#   - Veo 3.1: best cinematic polish and prompt adherence, native 4K.
+#   - Kling 4.0: API not public yet (Oct 2026). Add when live, then benchmark.
+#   - Sora: being discontinued; not used.
+
+endpoints_verified: false
+
+identity:                     # Track B only
+  presenters_enabled: false
+  presenters_file: docs/characters/presenters.yaml
+
+images:
+  keyframe:
+    # Ordered candidates. Producer generates `candidates_per_shot` stills across these,
+    # QC scores them, human approves one.
+    candidates_per_shot: 4
+    models:
+      - {provider: fal, model: "fal-ai/nano-banana-pro/edit", max_reference_images: 14, size: "2160x3840", est_cost_usd: 0.15}
+      - {provider: fal, model: "fal-ai/gpt-image-2/edit",     max_reference_images: 10, size: "2160x3840", est_cost_usd: 0.20}
+  upscale_still:
+    - {provider: fal, model: "fal-ai/topaz/upscale/image", scale: 2}
+
+video:
+  tiers:
+    # Motion exploration only. Never in a posted video.
+    draft:
+      - {provider: fal, model: "fal-ai/kling-video/v3/standard/image-to-video", resolution: 720p, est_cost_per_sec_usd: 0.10}
+    # Everything that can end up on Instagram.
+    final:
+      - {provider: fal, model: "fal-ai/bytedance/seedance/v2.5/pro/reference-to-video", resolution: 1080p, est_cost_per_sec_usd: 1.14, refs: true}
+      - {provider: fal, model: "fal-ai/kling-video/o3/pro/image-to-video",              resolution: 2160p, est_cost_per_sec_usd: 0.42}
+      - {provider: fal, model: "fal-ai/veo3.1/image-to-video",                          resolution: 2160p, est_cost_per_sec_usd: 0.30, audio: false}
+    human_motion:            # hands, people moving in frame
+      - {provider: fal, model: "fal-ai/bytedance/seedance/v2.5/pro/reference-to-video", resolution: 1080p, refs: true}
+      - {provider: fal, model: "fal-ai/kling-video/o3/pro/image-to-video",              resolution: 2160p}
+    product_macro:           # fabric, weave, print, logo close-ups
+      - {provider: fal, model: "fal-ai/kling-video/o3/pro/image-to-video",              resolution: 2160p}
+      - {provider: fal, model: "fal-ai/bytedance/seedance/v2.5/pro/reference-to-video", resolution: 1080p, refs: true}
+    cinematic:               # room reveals, slow camera moves, light
+      - {provider: fal, model: "fal-ai/veo3.1/image-to-video",                          resolution: 2160p, audio: false}
+      - {provider: fal, model: "fal-ai/kling-video/o3/pro/image-to-video",              resolution: 2160p}
+  defaults:
+    draft_first: false        # quality first: go straight to final tier
+    best_of: 2                # per shot, generate on the top 2 models of the purpose list; QC keeps the best
+    max_shot_attempts: 3      # per model, then escalate to human
+    max_keyframe_attempts: 2
+    clip_duration_s: [4, 8]
+
+finishing:
+  upscale_video:
+    - {provider: fal, model: "fal-ai/topaz/upscale/video", target: 2160p, est_cost_per_sec_usd: 0.10}
+  master: {width: 2160, height: 3840, fps: 30, codec: prores_422_hq}
+  delivery:                   # what goes to Instagram (see docs/03 + tools/qc_technical.py)
+    width: 1080
+    height: 1920
+    fps: 30
+    video_codec: libx264
+    profile: high
+    crf: 16
+    maxrate_mbps: 20
+    pix_fmt: yuv420p
+    audio_codec: aac
+    audio_bitrate_kbps: 256
+    audio_sample_rate: 48000
+    max_size_mb: 95
+
+voice:
+  provider: elevenlabs
+  model: eleven_v3            # confirm current id
+  voice_id_env: ELEVENLABS_VOICE_ID
+
+qc:
+  vision_model: gemini-3-pro  # confirm current id in AI Studio
+  pass_threshold: 88
+  final_threshold: 92
+
+llm:
+  strategist: claude-opus-5-5
+  director: claude-opus-5-5
+  producer: claude-sonnet-5-5

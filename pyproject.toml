@@ -1,0 +1,24 @@
+[project]
+name = "bianca-studio"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = ["langgraph", "langgraph-checkpoint-postgres", "anthropic", "google-genai",
+  "fal-client", "elevenlabs", "supabase", "pyyaml", "jsonschema", "httpx", "pydantic"]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/bianca_studio"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"

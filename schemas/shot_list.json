@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ShotList",
+  "type": "object",
+  "required": [
+    "angle_id",
+    "total_duration_s",
+    "shots"
+  ],
+  "properties": {
+    "angle_id": {
+      "type": "string"
+    },
+    "total_duration_s": {
+      "type": "integer"
+    },
+    "scene_lighting": {
+      "type": "string"
+    },
+    "shots": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "required": [
+          "shot_id",
+          "order",
+          "duration_s",
+          "purpose",
+          "keyframe_prompt",
+          "video_prompt",
+          "references",
+          "character_on_camera",
+          "speaking",
+          "model_purpose"
+        ],
+        "properties": {
+          "shot_id": {
+            "type": "string"
+          },
+          "order": {
+            "type": "integer"
+          },
+          "duration_s": {
+            "type": "integer",
+            "minimum": 4,
+            "maximum": 10
+          },
+          "purpose": {
+            "type": "string",
+            "enum": [
+              "hook",
+              "demo",
+              "lifestyle",
+              "macro",
+              "talking",
+              "end"
+            ]
+          },
+          "keyframe_prompt": {
+            "type": "string"
+          },
+          "video_prompt": {
+            "type": "string"
+          },
+          "references": {
+            "type": "object",
+            "properties": {
+              "product_photos": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "use_presenter_refs": {
+                "type": "boolean"
+              }
+            }
+          },
+          "character_on_camera": {
+            "type": "boolean"
+          },
+          "speaking": {
+            "type": "boolean"
+          },
+          "dialogue": {
+            "type": "string"
+          },
+          "voiceover_line": {
+            "type": "string"
+          },
+          "on_screen_text": {
+            "type": "string"
+          },
+          "audio_direction": {
+            "type": "string"
+          },
+          "model_purpose": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "final",
+              "human_motion",
+              "product_macro",
+              "cinematic",
+              "motion_control"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

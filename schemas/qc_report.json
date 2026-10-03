@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "QCReport",
+  "type": "object",
+  "required": [
+    "pass",
+    "score",
+    "hard_fails",
+    "metrics",
+    "fixes"
+  ],
+  "properties": {
+    "pass": {
+      "type": "boolean"
+    },
+    "score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "hard_fails": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rule": {
+            "type": "string"
+          },
+          "timestamp_s": {
+            "type": "number"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "properties": {
+        "product_fidelity": {
+          "type": "number"
+        },
+        "print_logo_accuracy": {
+          "type": "number"
+        },
+        "motion_realism": {
+          "type": "number"
+        },
+        "story_adherence": {
+          "type": "number"
+        },
+        "cinematography": {
+          "type": "number"
+        },
+        "brand_suitability": {
+          "type": "number"
+        },
+        "artifacts": {
+          "type": "number"
+        },
+        "audio_captions": {
+          "type": "number"
+        },
+        "photorealism": {
+          "type": "number"
+        },
+        "character_consistency": {
+          "type": "number",
+          "description": "Track B only"
+        }
+      }
+    },
+    "technical": {
+      "type": "object"
+    },
+    "fixes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "target",
+          "instruction"
+        ],
+        "properties": {
+          "target": {
+            "type": "string",
+            "enum": [
+              "prompt",
+              "seed",
+              "model",
+              "duration",
+              "keyframe"
+            ]
+          },
+          "instruction": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

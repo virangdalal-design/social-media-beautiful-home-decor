@@ -1,0 +1,33 @@
+{
+  "product_name": "NAUTICA Signature Ultra Soft Luxurious Comforter - Pearl",
+  "brand": "NAUTICA",
+  "collection": "Signature",
+  "sku": "COMF2004",
+  "barcode": "8903556504300",
+  "price": {
+    "sale": 4199,
+    "regular": 6999,
+    "currency": "INR",
+    "discount_percent": 40
+  },
+  "size": "Double Bed",
+  "weight_grams": 2440,
+  "fill_gsm": 110,
+  "color": "Pearl (Solid)",
+  "material": {
+    "filling": "Aloe Vera Gel Fiber",
+    "shell": "Micro Fabric (High Thread Count)"
+  },
+  "features": [
+    "Ultra soft micro fabric exterior",
+    "Aloe Vera infused gel fiber filling",
+    "Anti-microbial protection layer",
+    "All-weather / AC room suitable",
+    "Machine washable",
+    "Becomes softer with each wash",
+    "Color and prints resist fading"
+  ],
+  "product_url": "https://www.biancahome.com/products/226_nautica-ultra-soft-luxurious-comforter-for-all-weather_comf2004",
+  "source_website": "https://www.biancahome.com",
+  "scraped_date": "2026-02-16"
+}

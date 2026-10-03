@@ -1,0 +1,36 @@
+# Track B presenters. Read by the router when identity.presenters_enabled is true
+# (config/models.yaml). Names are working names: check no real influencer uses the
+# name/handle before locking. soul_reference_id / voice_id are filled at lock time.
+presenters:
+  - id: meera
+    angle: informative
+    status: draft            # draft | candidates | locked
+    bible: docs/characters/meera.md
+    brands: [Bianca Home, Nautica, Bianca Maison]
+    categories: [bedding, bath]
+    soul_reference_id: null
+    voice_id: null
+  - id: kabir
+    angle: aspirational
+    status: draft
+    bible: docs/characters/kabir.md
+    brands: [Bianca Home, Bianca Maison]
+    categories: [bedding, dining, other]
+    soul_reference_id: null
+    voice_id: null
+  - id: rohan
+    angle: fun
+    status: draft
+    bible: docs/characters/rohan.md
+    brands: [Bianca Home]          # never Nautica
+    categories: [bedding, bath, dining, other]
+    soul_reference_id: null
+    voice_id: null
+  - id: anaya
+    angle: luxury
+    status: draft
+    bible: docs/characters/anaya.md
+    brands: [Nautica, Bianca Maison, Bianca Home]
+    categories: [bedding, bath, fragrance]
+    soul_reference_id: null
+    voice_id: null

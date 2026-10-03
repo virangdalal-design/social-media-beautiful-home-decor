@@ -1,0 +1,18 @@
+# API keys and secrets
+config/api-keys.env
+*.env
+!.env.example
+
+# Generated video assets (large files)
+assets/videos/*.mp4
+assets/videos/*.mov
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo

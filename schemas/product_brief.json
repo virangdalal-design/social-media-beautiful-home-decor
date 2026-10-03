@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ProductBrief",
+  "type": "object",
+  "required": [
+    "product_id",
+    "name",
+    "brand",
+    "category",
+    "product_url",
+    "description",
+    "material",
+    "size_contents",
+    "print_or_colour",
+    "logo_notes",
+    "selling_points",
+    "audience",
+    "price_point",
+    "photos",
+    "platform",
+    "target_duration_s"
+  ],
+  "properties": {
+    "product_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "brand": {
+      "type": "string",
+      "enum": [
+        "Bianca Home",
+        "Nautica",
+        "Bianca Maison"
+      ]
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "bedding",
+        "bath",
+        "dining",
+        "fragrance",
+        "other"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "material": {
+      "type": "string"
+    },
+    "print_or_colour": {
+      "type": "string"
+    },
+    "selling_points": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 3
+    },
+    "audience": {
+      "type": "string"
+    },
+    "price_point": {
+      "type": "string"
+    },
+    "photos": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 8,
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "logo_notes": {
+      "type": "string",
+      "description": "Where logos/labels sit on the product"
+    },
+    "platform": {
+      "type": "string",
+      "enum": [
+        "instagram_reel",
+        "youtube_short",
+        "meta_ad"
+      ]
+    },
+    "target_duration_s": {
+      "type": "integer",
+      "enum": [
+        15,
+        20,
+        30
+      ]
+    },
+    "reference_video_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "language": {
+      "type": "string",
+      "default": "en-IN"
+    },
+    "product_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "size_contents": {
+      "type": "string",
+      "description": "Dimensions and every item in the set"
+    },
+    "mood": {
+      "type": "string"
+    },
+    "must_avoid": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "caption_preference": {
+      "type": "string"
+    }
+  }
+}
