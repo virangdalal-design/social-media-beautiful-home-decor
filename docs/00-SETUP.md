@@ -102,7 +102,8 @@ cost ~$0.40–1.15 per generated second, and we keep the best of several takes.
    `SUPABASE_SERVICE_KEY` (server-side only; never in a browser or a commit).
 3. Storage → New bucket `bianca-studio`, **public** (Instagram must fetch the file).
    Only final renders are uploaded there; drafts stay private (`bianca-studio-private`).
-4. SQL editor → run `supabase/migrations/001_init.sql`.
+4. Claude applies `supabase/migrations/001_init.sql` and `002_storage_and_rls.sql` through the
+   Supabase connector (creates both buckets and locks every table to the service role).
 
 ### 5. Meta / Instagram (the long one — budget 1–2 hours)
 Requirements: @biancahome is an Instagram **Business** account (not Creator), linked to
