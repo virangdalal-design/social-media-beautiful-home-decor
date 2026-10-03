@@ -6,9 +6,31 @@
         "repo": "DietrichGebert/ponytail",
         "ref": "v4.9.0"
       }
+    },
+    "addy-agent-skills": {
+      "source": {
+        "source": "settings",
+        "name": "addy-agent-skills",
+        "plugins": [
+          {
+            "name": "agent-skills",
+            "description": "Addy Osmani's engineering skills: spec, plan, build, test, review, simplify, ship.",
+            "source": {
+              "source": "github",
+              "repo": "addyosmani/agent-skills",
+              "sha": "f01f649b4b50fd89360eb9e3f5d3c60d2d6ee294"
+            }
+          }
+        ],
+        "owner": {
+          "name": "Addy Osmani",
+          "url": "https://github.com/addyosmani"
+        }
+      }
     }
   },
   "enabledPlugins": {
-    "ponytail@ponytail": true
+    "ponytail@ponytail": true,
+    "agent-skills@addy-agent-skills": true
   }
 }
