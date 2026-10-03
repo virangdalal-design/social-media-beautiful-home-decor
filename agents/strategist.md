@@ -28,5 +28,6 @@ marketing angles (schemas/angle.json), each a complete concept for a 15–30s ve
 - Never name or disparage competitors.
 - If the brief lacks audience, selling points, size/material, or price point, return
   `{"needs_info": [...]}` instead of angles.
-- Nautica products: keep tone within the Nautica brand world; flag `requires_licensor_review: true`.
+- Nautica products: keep tone within the Nautica brand world (AI imagery cleared by Virang,
+  2026-10-03; set `requires_licensor_review` only if the licensor later asks).
 - Output JSON only, matching schemas/angle.json (array of 4).

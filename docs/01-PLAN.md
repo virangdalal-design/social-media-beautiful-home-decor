@@ -80,7 +80,7 @@ Before any presenter posts: ASCI virtual-influencer disclosure on every post.
 | Product, 4 angles | ₹14,000–28,000 ($160–320) |
 
 ## Legal / brand checklist (before first public post)
-- [ ] Nautica licence: AI-generated product imagery permitted? Licensor approval needed?
+- [x] Nautica licence: AI-generated product imagery confirmed OK by Virang (2026-10-03).
 - [ ] Output licences allow commercial use (fal model terms, Seedance, Kling, Veo, Topaz,
       ElevenLabs).
 - [ ] Music licensed for brand use on Instagram.

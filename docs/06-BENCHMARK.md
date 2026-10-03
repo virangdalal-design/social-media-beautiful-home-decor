@@ -20,6 +20,12 @@ Kling 4.0 (when API live). Keyframes: Nano Banana Pro · GPT Image 2.
 Run the benchmark during Phase 1 on shots 1, 2, 6, 7, 8, 10 (no presenter needed); the
 presenter shots (3, 4, 5, 9) run in Track B.
 
+## Low-cost comparison
+Run the same shots through `comparison:` in config/models.yaml (free / cheap models) in the
+same blind rating. Purpose: know exactly what the extra spend buys, and catch a cheap model
+that has caught up. A comparison model is promoted into `video.tiers` only by beating a
+final-tier model on quality in the blind rating, never on price.
+
 ## Procedure
 1. Generate each shot on each model, same keyframe, same prompt skeleton, 1080p where supported.
 2. Strip model names; shuffle. Three raters score blind on the 9 metrics (docs/03).

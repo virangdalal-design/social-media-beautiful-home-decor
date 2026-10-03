@@ -54,3 +54,11 @@ def test_presenters_registry_matches_bibles():
         assert Path(ROOT / p["bible"]).exists(), p["bible"]
     rohan = next(p for p in reg if p["id"] == "rohan")
     assert "Nautica" not in rohan["brands"]
+
+
+def test_comparison_lane_never_reaches_router():
+    m = load_models()
+    assert "comparison" not in m["video"]["tiers"]
+    cheap = {c["model"] for c in m["comparison"]["video"]}
+    routed = {c["model"] for name, tier in m["video"]["tiers"].items() if name != "draft" for c in tier}
+    assert not cheap & routed

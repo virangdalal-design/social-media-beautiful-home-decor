@@ -17,6 +17,22 @@ you buy. ₹ at ~₹88/$.
 
 ---
 
+## Quick path (≈60–90 min, do in this order)
+Accounts must be created by you (sign-up, email/phone verification, payment, terms).
+Use the Bianca business email for all of them. Then add each value as an environment
+variable in the Claude Code cloud environment settings (environment menu → Edit) —
+never paste keys into chat or commit them.
+1. [ ] fal.ai → $200 credits → key → `FAL_KEY`
+2. [ ] Google AI Studio → key (free tier works for comparison stills) → `GOOGLE_API_KEY`;
+       then enable billing on the same Cloud project (claim the $300 trial credit)
+3. [ ] Anthropic Console → $25 credit → key → `ANTHROPIC_API_KEY`
+4. [ ] Meta: confirm @biancahome is Business + linked to the Page → developer app →
+       system user token → `META_ACCESS_TOKEN`, `IG_USER_ID` (§B5, the long one)
+5. [ ] Music: download 5–10 tracks from Meta Sound Collection into assets/music/
+6. [ ] Optional: ElevenLabs → `ELEVENLABS_API_KEY`, `ELEVENLABS_VOICE_ID`
+7. [ ] Later: Supabase project (on hold — free plan has no free project slot)
+Then start a new session (it picks up the variables) and run `make doctor`.
+
 ## A. Needed now (Track A — brand videos)
 
 | # | Service | What for | Buy | Approx. cost | Env vars |
@@ -30,6 +46,20 @@ you buy. ₹ at ~₹88/$.
 | 7 | **ElevenLabs** (optional) | Voice-over, if a video uses narration | Creator plan | ~$22/month | `ELEVENLABS_API_KEY`, `ELEVENLABS_VOICE_ID` |
 
 Not needed now: Higgsfield (Track B identity), Railway (Phase 2 approval page), Blotato (Phase 3).
+
+### Free / low-cost comparison lane (no extra accounts)
+Every cheap model we compare against runs on the **same two accounts** (fal.ai + Google),
+listed under `comparison:` in config/models.yaml. They are benchmarked side by side with
+the final tier (docs/06-BENCHMARK.md) and are never routed into a posted video.
+| Model | Via | Approx. cost |
+|---|---|---|
+| Nano Banana (Gemini 2.5 Flash Image) — stills | Google AI Studio free tier | free (daily quota) |
+| FLUX Kontext, Seedream 4 — stills | fal | $0.03–0.04 / image |
+| Veo 3.1 Lite — video | Google (same key) | ~$0.05 / s |
+| Seedance 2.0 Fast, Hailuo 02, Wan 2.5, LTX-2.5, Kling 3.0 Standard — video | fal | ~$0.03–0.10 / s |
+Free credit worth claiming: a new Google Cloud billing account gets a **$300 trial credit**
+(usable for Veo on Vertex). One comparison run (6 shots × 6 cheap models × 5 s) ≈ $10–15
+(₹900–1,300).
 
 ### Budget to get to the Phase 1 gate
 | Item | ₹ | $ |
@@ -130,8 +160,6 @@ GitHub Actions secrets only when Phase 2 automation runs in CI.
    end-card wording, Instagram handle(s) to tag.
 3. The first product, filled in per docs/07-PRODUCT-INTAKE.md (photos + facts).
 4. Music choice (Meta Sound Collection vs paid library).
-5. Nautica: is AI-generated imagery of Nautica products allowed under the licence, and
-   does it need licensor approval? Until confirmed, first videos use Bianca-brand products.
 
 ---
 

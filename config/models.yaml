@@ -58,6 +58,22 @@ video:
     max_keyframe_attempts: 2
     clip_duration_s: [4, 8]
 
+# Free / low-cost lane — ONLY for side-by-side comparison in the benchmark
+# (docs/06-BENCHMARK.md). Deliberately outside video.tiers so the router can never pick
+# these for a shot. Never posted. Same keyframe + prompt as the final-tier run.
+comparison:
+  images:
+    - {provider: google, model: "gemini-2.5-flash-image", note: "Nano Banana; free tier in AI Studio (no card)", est_cost_usd: 0.0}
+    - {provider: fal, model: "fal-ai/flux-pro/kontext", est_cost_usd: 0.04}
+    - {provider: fal, model: "fal-ai/bytedance/seedream/v4/edit", est_cost_usd: 0.03}
+  video:
+    - {provider: google, model: "veo-3.1-lite-generate-preview", resolution: 720p, est_cost_per_sec_usd: 0.05, note: "same GOOGLE_API_KEY; covered by GCP $300 trial credit if on Vertex"}
+    - {provider: fal, model: "fal-ai/bytedance/seedance/v2/fast/image-to-video", resolution: 720p, est_cost_per_sec_usd: 0.03}
+    - {provider: fal, model: "fal-ai/minimax/hailuo-02/standard/image-to-video", resolution: 768p, est_cost_per_sec_usd: 0.045}
+    - {provider: fal, model: "fal-ai/wan/v2.5/image-to-video", resolution: 720p, est_cost_per_sec_usd: 0.07, note: "open weights; self-hostable later"}
+    - {provider: fal, model: "fal-ai/ltx-2.5/image-to-video/fast", resolution: 720p, est_cost_per_sec_usd: 0.09, note: "open weights"}
+    - {provider: fal, model: "fal-ai/kling-video/v3/standard/image-to-video", resolution: 720p, est_cost_per_sec_usd: 0.10}
+
 finishing:
   upscale_video:
     - {provider: fal, model: "fal-ai/topaz/upscale/video", target: 2160p, est_cost_per_sec_usd: 0.10}
