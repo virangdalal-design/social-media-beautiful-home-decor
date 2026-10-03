@@ -17,6 +17,12 @@ into an environment that holds API keys.
 | Directory | github.com/zhuyansen/awesome-claude-video-skills | 180 video skills, security-graded; check monthly | reference |
 | Fallback API pack | github.com/brycefinnerty/claude-code-ai-ad-builder-kie-ai | KIE.ai multi-model access if Higgsfield API is limiting | unverified |
 
+## Verified (2026-10-03)
+| Repo | Verdict | Findings |
+|---|---|---|
+| github.com/DietrichGebert/ponytail @ tag v4.9.0 | **installed** (project-level, `.claude/settings.json`) | MIT; commits daily; Claude Code plugin = prompt rules + skills + Node hooks (SessionStart, SubagentStart, UserPromptSubmit). Hooks read only their own env vars, write small mode/flag files under ~/.claude, no network calls, no child processes (`vm` only sandboxes a user regex). Note: some guides say `dietrichayala/ponytail` — that repo does not exist; never install from it (typosquat risk). Affects how Claude Code writes code in this repo, not the video pipeline. |
+| github.com/diegosouzapw/OmniRoute | **not installed** | MIT, very active, but ~760 MB / ~12k source files — cannot be code-reviewed per rule 9, and it would hold every API key. Core features route consumer subscriptions (Claude Pro, ChatGPT etc.) as APIs and use "TLS stealth" to avoid blocks — against provider terms, risks bans of the accounts we depend on. It is an LLM text gateway; our cost and quality live in video models on fal, which it does not replace. Our own router (config/models.yaml) + the comparison lane already cover model choice. Revisit only as a local, LLM-only experiment with pay-as-you-go API keys. |
+
 ## Deliberately NOT used
 - SadTalker / gTTS / SD-1.5 influencer kits — 2023 quality.
 - FaceFusion or any face swap onto real footage — consent and platform risk.
