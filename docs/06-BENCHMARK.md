@@ -26,6 +26,13 @@ same blind rating. Purpose: know exactly what the extra spend buys, and catch a 
 that has caught up. A comparison model is promoted into `video.tiers` only by beating a
 final-tier model on quality in the blind rating, never on price.
 
+## Text-agent comparison
+Same product brief → Strategist (4 angles + captions) and Director (shot list) run on Claude
+(llm: in config/models.yaml) and on each `comparison.llm` model (GPT-6 Astra, DeepSeek V4 Pro,
+DeepSeek Flash). Outputs are stripped of model names, shuffled, and rated blind on: hook
+specificity, brand voice, product accuracy (no invented claims), caption quality, and whether the
+shot list is producible. Record cost per run. Promote only on a quality win.
+
 ## Procedure
 1. Generate each shot on each model, same keyframe, same prompt skeleton, 1080p where supported.
 2. Strip model names; shuffle. Three raters score blind on the 9 metrics (docs/03).

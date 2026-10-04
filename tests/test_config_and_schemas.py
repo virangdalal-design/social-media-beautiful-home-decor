@@ -62,3 +62,10 @@ def test_comparison_lane_never_reaches_router():
     cheap = {c["model"] for c in m["comparison"]["video"]}
     routed = {c["model"] for name, tier in m["video"]["tiers"].items() if name != "draft" for c in tier}
     assert not cheap & routed
+
+
+def test_comparison_llms_never_drive_agents():
+    m = load_models()
+    cheap = {c["model"] for c in m["comparison"]["llm"]}
+    assert {"gpt-6-astra", "deepseek-v4-pro"} <= cheap
+    assert not cheap & set(m["llm"].values())

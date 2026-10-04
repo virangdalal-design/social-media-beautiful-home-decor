@@ -66,6 +66,11 @@ comparison:
     - {provider: google, model: "gemini-2.5-flash-image", note: "Nano Banana; free tier in AI Studio (no card)", est_cost_usd: 0.0}
     - {provider: fal, model: "fal-ai/flux-pro/kontext", est_cost_usd: 0.04}
     - {provider: fal, model: "fal-ai/bytedance/seedream/v4/edit", est_cost_usd: 0.03}
+  # Text agents (captions, angles, scripts, shot lists). Same brief, blind-rated against llm: below.
+  llm:
+    - {provider: openai, model: "gpt-6-astra", env: OPENAI_API_KEY, est_usd_per_mtok: {input: 10, output: 50}, note: "released 2026-09-03; text+image in, text out; no image/video generation"}
+    - {provider: deepseek, model: "deepseek-v4-pro", env: DEEPSEEK_API_KEY, base_url: "https://api.deepseek.com/anthropic", note: "Anthropic-compatible endpoint, as in bianca-ai-assistant"}
+    - {provider: deepseek, model: "deepseek-flash", env: DEEPSEEK_API_KEY, base_url: "https://api.deepseek.com/anthropic", note: "what bianca-ai-assistant runs in production"}
   video:
     - {provider: google, model: "veo-3.1-lite-generate-preview", resolution: 720p, est_cost_per_sec_usd: 0.05, note: "same GOOGLE_API_KEY; covered by GCP $300 trial credit if on Vertex"}
     - {provider: fal, model: "fal-ai/bytedance/seedance/v2/fast/image-to-video", resolution: 720p, est_cost_per_sec_usd: 0.03}
